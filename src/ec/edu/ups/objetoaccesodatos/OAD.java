@@ -8,6 +8,11 @@ package ec.edu.ups.objetoaccesodatos;
 import ec.edu.ups.entidades.Pelicula;
 import ec.edu.ups.entidades.PeliculaVista;
 import ec.edu.ups.entidades.Usuario;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.List;
 
 /**
@@ -15,8 +20,45 @@ import java.util.List;
  * @author Pedro Bermeo
  */
 public class OAD {
+    
+     private String url;
+    private Connection conexion;
+    private PreparedStatement consulta;
+    private DateFormat formatoFecha;
+    
 
     public OAD() {
+        url = null;
+        conexion = null;
+        consulta = null;
+    }
+    public boolean obtenerConexion() {
+        
+        String url = "jdbc:postgresql://localhost:5432/BDPeliculas";
+          Connection conexion = null;
+        try {            
+            conexion =  DriverManager.getConnection(url,"postgres","manager");
+        } catch (SQLException ex) {
+            System.out.println("Error de Conexion" + ex.getMessage());
+        }
+        
+        
+        try {
+            conexion = DriverManager.getConnection(url, "postgresql", "1219MaPe");
+                
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener la conexión: " + ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public void cerrarConexion() {
+        try {
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al cerrar la conexión: " + ex.getMessage());
+        }
     }
     
     public boolean insertarUsuario(Usuario u){
