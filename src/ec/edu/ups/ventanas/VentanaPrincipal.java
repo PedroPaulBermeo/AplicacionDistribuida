@@ -23,6 +23,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         ventanaPelicula = new VentanaPelicula(this);
         ventanaUsuario = new VentanaUsuario(this);
+        jDesktopPane1.add(ventanaUsuario);
+        jDesktopPane1.add(ventanaPelicula);
         
     }
 
@@ -119,14 +121,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
        
         ventanaUsuario.setVisible(true);
-        jDesktopPane1.add(ventanaUsuario);
+        jDesktopPane1.setSelectedFrame(ventanaUsuario);
         ventanaPelicula.setVisible(false);
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
     private void jMenuPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPeliculaActionPerformed
         
         ventanaPelicula.setVisible(true);
-        jDesktopPane1.add(ventanaPelicula);
+        jDesktopPane1.setSelectedFrame(ventanaPelicula);
         ventanaUsuario.setVisible(false);
         
     }//GEN-LAST:event_jMenuPeliculaActionPerformed
