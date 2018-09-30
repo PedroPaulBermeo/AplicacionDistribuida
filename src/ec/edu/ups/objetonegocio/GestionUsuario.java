@@ -17,8 +17,18 @@ public class GestionUsuario {
     public GestionUsuario() {
     }
     public boolean validarCedula(String cedula){
+     String primDigito;
+     String terDigito;
+     String pares;
+     String impares;
      
-        return false;
+        if(cedula.length()==10){
+            primDigito = cedula.substring(0,2);
+            System.out.println(primDigito);
+        }else{
+            return false;
+        }
+        return true;
     }
     
     public boolean validarFechaNacimiento(String fecha){
