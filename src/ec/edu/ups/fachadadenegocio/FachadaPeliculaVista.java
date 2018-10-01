@@ -6,6 +6,10 @@
 package ec.edu.ups.fachadadenegocio;
 
 import ec.edu.ups.entidades.PeliculaVista;
+import ec.edu.ups.entidades.Usuario;
+import ec.edu.ups.objetonegocio.GestionPeliculaVista;
+import ec.edu.ups.objetonegocio.GestionUsuario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +18,29 @@ import java.util.List;
  */
 public class FachadaPeliculaVista {
 
+    private GestionUsuario gestionUsuario;
+    private GestionPeliculaVista gestionPeliculaVista;
+
     public FachadaPeliculaVista() {
+        gestionUsuario = new GestionUsuario();
+        gestionPeliculaVista = new GestionPeliculaVista();
+
     }
-     
-    public List<PeliculaVista> getPeliculasVistaUsuario(){
+
+    public List<PeliculaVista> getPeliculasVistaUsuario(String cedula) {
+
+        List<PeliculaVista> peliculaVistas = gestionPeliculaVista.getTodasPeliculasVista();
+
+        List<PeliculaVista> peliculasVistasUsuario = new ArrayList<>();
+
+        for (PeliculaVista pv : peliculaVistas) {
+            if (pv.getIdUsuario().getCedula().equals(cedula)) {
+                peliculasVistasUsuario.add(pv);
+
+            }
+            
+        }
         
-        return null;
+        return peliculaVistas;
     }
 }
