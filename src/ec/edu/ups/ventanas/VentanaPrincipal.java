@@ -5,15 +5,10 @@
  */
 package ec.edu.ups.ventanas;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import ec.edu.ups.entidades.Usuario;
-import ec.edu.ups.objetonegocio.GestionUsuario;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -28,13 +23,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
-        ventanaPelicula = new VentanaPelicula(this);
-        ventanaUsuario = new VentanaUsuario(this);
-        ventanaListarUsuarios=new VentanaListarUsuarios();
-        /*jDesktopPane1.add(ventanaUsuario);
-        jDesktopPane1.add(ventanaPelicula);
-        jDesktopPane1.add(ventanaListarUsuarios);
-        */
+        ventanaPelicula = new VentanaPelicula();
+        ventanaUsuario = new VentanaUsuario();
+        ventanaListarUsuarios = new VentanaListarUsuarios();
+        
     }
 
     /**
@@ -55,8 +47,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuPelicula = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -75,7 +65,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Usuario");
 
-        jMenuUsuario.setText("Administrar Usuario");
+        jMenuUsuario.setText("Crear Usuario");
         jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuUsuarioActionPerformed(evt);
@@ -106,18 +96,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
-        jMenu6.setText("Salir");
-
-        jMenuItem3.setText("Salir ");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem3);
-
-        jMenuBar2.add(jMenu6);
-
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,32 +114,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
        
-       /* ventanaUsuario.setVisible(true);
-        jDesktopPane1.setSelectedFrame(ventanaUsuario);
-        ventanaPelicula.setVisible(false);*/
-       ventanaListarUsuarios.setVisible(false);
         ventanaUsuario.setVisible(true);
         ventanaPelicula.setVisible(false);
+        ventanaListarUsuarios.setVisible(false);
+        
         jPanel1.add(ventanaUsuario);
+        
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
     private void jMenuPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPeliculaActionPerformed
         
-        ventanaListarUsuarios.setVisible(false);
-        ventanaUsuario.setVisible(false);
+          ventanaUsuario.setVisible(false);
         ventanaPelicula.setVisible(true);
-        jPanel1.add(ventanaUsuario);
+        ventanaListarUsuarios.setVisible(false);
+        
+        jPanel1.add(ventanaPelicula);
         
     }//GEN-LAST:event_jMenuPeliculaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ventanaListarUsuarios.setVisible(true);
         ventanaUsuario.setVisible(false);
         ventanaPelicula.setVisible(false);
+        ventanaListarUsuarios.setVisible(true);
+        
         jPanel1.add(ventanaListarUsuarios);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -203,10 +178,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuPelicula;
     private javax.swing.JMenuItem jMenuUsuario;

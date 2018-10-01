@@ -5,7 +5,6 @@
  */
 package ec.edu.ups.ventanas;
 
-import ec.edu.ups.entidades.Usuario;
 import ec.edu.ups.objetonegocio.GestionUsuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,25 +22,9 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaUsuario
      */
-    public VentanaUsuario(VentanaPrincipal p) {
-
+    public VentanaUsuario() {
         initComponents();
-
-        ventanaPrincipal = p;
         gestionUsuario = new GestionUsuario();
-
-        //0103743365
-        //0106460611
-        //0103213062
-        //0107636128
-        //0151228905
-        //0150782928
-        //0106456122
-        //0101529865
-        //0104118161
-        //0106545460
-        gestionUsuario.validarFechaNacimiento("30/02/1995");
-        gestionUsuario.validarCorreoElectronico("maryjopelaez@hotmail.com");
     }
 
     /**
@@ -118,11 +101,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("CANCELAR");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
 
         btnModificar.setText("MODIFICAR");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,11 +112,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         txtCedula.setEditable(false);
 
         btnEliminar.setText("ELIMINAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 51, 0));
@@ -264,7 +237,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarCedulaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        buscar();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
@@ -275,14 +248,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         modificar();
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        eliminar();
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        limpiar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void modificar() {
         List<String> lista = obtenerLista();
 
@@ -292,51 +257,12 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 && gestionUsuario.validarDatosNulos(lista)) == true) {
             if (gestionUsuario.actualizarUsuario(lista)) {
                 JOptionPane.showMessageDialog(this, "Usuario Actualizado Correctamente");
-                buscar();
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo actualizar un Usuario");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Uno de los datos Ingresados, son incorrectos", "Error de Datos", JOptionPane.WARNING_MESSAGE);
         }
-    }
-
-    private void eliminar() {
-        List<String> lista = obtenerLista();
-        if (gestionUsuario.validarDatosNulos(lista)) {
-            if (gestionUsuario.eliminarUsuario(txtCedula.getText())) {
-                JOptionPane.showMessageDialog(this, "Usuario Eliminado Correctamente");
-                limpiar();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el Usuario");
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Uno de los datos Ingresados, son incorrectos", "Error de Datos", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
-    private void buscar() {
-
-        if (gestionUsuario.validarCedula(txtBuscarCedula.getText())) {
-            Usuario u = gestionUsuario.buscarUsuario(txtCedula.getText());
-            txtCedula.setText(u.getCedula());
-            txtNombre.setText(u.getNombre());
-            txtApellido.setText(u.getApellido());
-            txtFechaNacimiento.setText("" + u.getFechaNacimiento());
-            txtGenero.setText(u.getGenero());
-            txtCorreoElectronico.setText(u.getEmail());
-        }
-    }
-
-    private void limpiar() {
-        txtBuscarCedula.setText("");
-        txtCedula.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtFechaNacimiento.setText("");
-        txtGenero.setText("");
-        txtCorreoElectronico.setText("");
     }
 
     private List<String> obtenerLista() {
@@ -349,7 +275,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         lista.add(txtCorreoElectronico.getText());
         return lista;
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;

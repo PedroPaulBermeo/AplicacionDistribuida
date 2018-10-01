@@ -231,22 +231,5 @@ public class GestionUsuario {
         return usuario;
     }
     
-    public boolean buscarUsuarioExiste(List<String> u){
-        
-        if(oad.obtenerConexion()){
-            List<Usuario>usuarios=new ArrayList<>();
-            usuarios=oad.listarUsuarios();
-            for(Usuario u1 : usuarios){
-                if(u1.getEmail().equals(u.get(5))){
-                    oad.cerrarConexion();
-                    return true;
-                }
-            }
-            
-            oad.cerrarConexion();
-        }
-        
-        return false;
-        
-    }
+   
 }

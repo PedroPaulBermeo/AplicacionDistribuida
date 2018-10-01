@@ -10,13 +10,13 @@ package ec.edu.ups.ventanas;
  * @author María José
  */
 public class VentanaPelicula extends javax.swing.JInternalFrame {
-    private VentanaPrincipal ventanaPrincipal;
+   
     /**
      * Creates new form VentanaPelicula
      */
-    public VentanaPelicula(VentanaPrincipal p) {
+    public VentanaPelicula() {
         initComponents();
-        ventanaPrincipal = p;
+   
     }
 
     /**
