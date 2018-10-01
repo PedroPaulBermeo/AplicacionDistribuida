@@ -5,26 +5,31 @@
  */
 package ec.edu.ups.ventanas;
 
+import ec.edu.ups.entidades.Usuario;
 import ec.edu.ups.objetonegocio.GestionUsuario;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author María José
  */
 public class VentanaUsuario extends javax.swing.JInternalFrame {
+
     private VentanaPrincipal ventanaPrincipal;
     private GestionUsuario gestionUsuario;
+
     /**
      * Creates new form VentanaUsuario
      */
     public VentanaUsuario(VentanaPrincipal p) {
-        
+
         initComponents();
-        
+
         ventanaPrincipal = p;
-        gestionUsuario  = new GestionUsuario();
-        gestionUsuario.validarCedula("0106545460");     
-        
+        gestionUsuario = new GestionUsuario();
+
         //0103743365
         //0106460611
         //0103213062
@@ -35,7 +40,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         //0101529865
         //0104118161
         //0106545460
-        
         gestionUsuario.validarFechaNacimiento("30/02/1995");
         gestionUsuario.validarCorreoElectronico("maryjopelaez@hotmail.com");
     }
@@ -65,12 +69,14 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtFechaNacimiento = new javax.swing.JTextField();
         txtGenero = new javax.swing.JTextField();
         txtCorreoElectronico = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtFechaNacimiento = new javax.swing.JFormattedTextField();
 
+        setClosable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         txtBuscarCedula.addActionListener(new java.awt.event.ActionListener() {
@@ -112,10 +118,33 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        txtCedula.setEditable(false);
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel10.setText("dd/MM/yyyy");
+
+        txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,33 +158,35 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(btnCrear))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                                 .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                                .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addComponent(btnCrear))
+                                    .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(162, 162, 162))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                    .addComponent(txtFechaNacimiento))))))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel10)
+                .addGap(83, 83, 83))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,9 +216,9 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,7 +233,10 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
-                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10)))
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -210,15 +244,14 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE))
+                            .addComponent(jLabel9)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(119, 119, 119)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCrear)
                             .addComponent(btnModificar)
-                            .addComponent(btnEliminar))
-                        .addGap(27, 27, 27)))
+                            .addComponent(btnEliminar))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addGap(42, 42, 42))
         );
@@ -231,13 +264,91 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarCedulaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        modificar();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void modificar() {
+        List<String> lista = obtenerLista();
+
+        if ((gestionUsuario.validarCedula(txtCedula.getText())
+                && gestionUsuario.validarFechaNacimiento(txtFechaNacimiento.getText())
+                && gestionUsuario.validarCorreoElectronico(txtCorreoElectronico.getText())
+                && gestionUsuario.validarDatosNulos(lista)) == true) {
+            if (gestionUsuario.actualizarUsuario(lista)) {
+                JOptionPane.showMessageDialog(this, "Usuario Actualizado Correctamente");
+                buscar();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar un Usuario");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Uno de los datos Ingresados, son incorrectos", "Error de Datos", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void eliminar() {
+        List<String> lista = obtenerLista();
+        if (gestionUsuario.validarDatosNulos(lista)) {
+            if (gestionUsuario.eliminarUsuario(txtCedula.getText())) {
+                JOptionPane.showMessageDialog(this, "Usuario Eliminado Correctamente");
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el Usuario");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Uno de los datos Ingresados, son incorrectos", "Error de Datos", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void buscar() {
+
+        if (gestionUsuario.validarCedula(txtBuscarCedula.getText())) {
+            Usuario u = gestionUsuario.buscarUsuario(txtCedula.getText());
+            txtCedula.setText(u.getCedula());
+            txtNombre.setText(u.getNombre());
+            txtApellido.setText(u.getApellido());
+            txtFechaNacimiento.setText("" + u.getFechaNacimiento());
+            txtGenero.setText(u.getGenero());
+            txtCorreoElectronico.setText(u.getEmail());
+        }
+    }
+
+    private void limpiar() {
+        txtBuscarCedula.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtFechaNacimiento.setText("");
+        txtGenero.setText("");
+        txtCorreoElectronico.setText("");
+    }
+
+    private List<String> obtenerLista() {
+        List<String> lista = new ArrayList<>();
+        lista.add(txtCedula.getText());
+        lista.add(txtNombre.getText());
+        lista.add(txtApellido.getText());
+        lista.add(txtFechaNacimiento.getText());
+        lista.add(txtGenero.getText());
+        lista.add(txtCorreoElectronico.getText());
+        return lista;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -246,6 +357,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -258,7 +370,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtBuscarCedula;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreoElectronico;
-    private javax.swing.JTextField txtFechaNacimiento;
+    private javax.swing.JFormattedTextField txtFechaNacimiento;
     private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

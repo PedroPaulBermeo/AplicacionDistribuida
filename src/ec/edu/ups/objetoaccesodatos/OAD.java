@@ -72,11 +72,11 @@ public class OAD {
         return false;
     }
 
-    public boolean eliminarUsuario(int id) {
+    public boolean eliminarUsuario(String cedula) {
 
         try {
             consulta = conexion.prepareStatement("DELETE FROM \"Usuario\" WHERE \""
-                    + "idUsuario\"='" + id + "';");
+                    + "idCedula\"='" + cedula + "';");
             consulta.executeQuery();
             return true;
 

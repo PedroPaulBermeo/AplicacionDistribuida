@@ -8,6 +8,12 @@ package ec.edu.ups.ventanas;
 import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import ec.edu.ups.entidades.Usuario;
+import ec.edu.ups.objetonegocio.GestionUsuario;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -16,6 +22,7 @@ import javax.swing.JMenuBar;
 public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaPelicula ventanaPelicula;
     private VentanaUsuario ventanaUsuario;
+    private VentanaListarUsuarios ventanaListarUsuarios;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -23,9 +30,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         ventanaPelicula = new VentanaPelicula(this);
         ventanaUsuario = new VentanaUsuario(this);
-        jDesktopPane1.add(ventanaUsuario);
+        ventanaListarUsuarios=new VentanaListarUsuarios();
+        /*jDesktopPane1.add(ventanaUsuario);
         jDesktopPane1.add(ventanaPelicula);
-        
+        jDesktopPane1.add(ventanaListarUsuarios);
+        */
     }
 
     /**
@@ -38,10 +47,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem4 = new javax.swing.JMenuItem();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuUsuario = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuPelicula = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -51,28 +62,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 632, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 504, Short.MAX_VALUE)
         );
 
         jMenu4.setText("Usuario");
 
-        jMenuUsuario.setText("Crear Usuario");
+        jMenuUsuario.setText("Administrar Usuario");
         jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuUsuarioActionPerformed(evt);
             }
         });
         jMenu4.add(jMenuUsuario);
+        jMenu4.add(jSeparator1);
+
+        jMenuItem1.setText("Listar Usuarios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
 
         jMenuBar2.add(jMenu4);
 
@@ -106,13 +124,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -120,22 +136,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
        
-        ventanaUsuario.setVisible(true);
+       /* ventanaUsuario.setVisible(true);
         jDesktopPane1.setSelectedFrame(ventanaUsuario);
+        ventanaPelicula.setVisible(false);*/
+       ventanaListarUsuarios.setVisible(false);
+        ventanaUsuario.setVisible(true);
         ventanaPelicula.setVisible(false);
+        jPanel1.add(ventanaUsuario);
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
     private void jMenuPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPeliculaActionPerformed
         
-        ventanaPelicula.setVisible(true);
-        jDesktopPane1.setSelectedFrame(ventanaPelicula);
+        ventanaListarUsuarios.setVisible(false);
         ventanaUsuario.setVisible(false);
+        ventanaPelicula.setVisible(true);
+        jPanel1.add(ventanaUsuario);
         
     }//GEN-LAST:event_jMenuPeliculaActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ventanaListarUsuarios.setVisible(true);
+        ventanaUsuario.setVisible(false);
+        ventanaPelicula.setVisible(false);
+        jPanel1.add(ventanaListarUsuarios);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,14 +201,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuPelicula;
     private javax.swing.JMenuItem jMenuUsuario;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

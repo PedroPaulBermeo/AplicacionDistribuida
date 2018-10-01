@@ -169,10 +169,10 @@ public class GestionUsuario {
         return false;
     }
 
-    public boolean eliminarUsuario(int id) {
+    public boolean eliminarUsuario(String cedula) {
         
         if(oad.obtenerConexion()){
-            oad.eliminarUsuario(id);
+            oad.eliminarUsuario(cedula);
             oad.cerrarConexion();
             return true;
         }
@@ -237,7 +237,7 @@ public class GestionUsuario {
             List<Usuario>usuarios=new ArrayList<>();
             usuarios=oad.listarUsuarios();
             for(Usuario u1 : usuarios){
-                if(u1.getEmail().equals(u.get(6))){
+                if(u1.getEmail().equals(u.get(5))){
                     oad.cerrarConexion();
                     return true;
                 }
