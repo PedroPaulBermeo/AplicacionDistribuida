@@ -36,9 +36,7 @@ public class FachadaPeliculaVista {
         for (PeliculaVista pv : peliculaVistas) {
             if (pv.getIdUsuario().getCedula().equals(cedula)) {
                 peliculasVistasUsuario.add(pv);
-
             }
-            
         }
         
         return peliculaVistas;
