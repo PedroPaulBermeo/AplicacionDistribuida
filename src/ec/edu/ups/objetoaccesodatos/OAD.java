@@ -122,7 +122,7 @@ public class OAD {
 
         try {
             consulta = conexion.prepareStatement("Select * From \"Pelicula\" "
-                    + "where\"idPelicula\"=" + nombre + "");
+                    + "where\" nombre\"=" + nombre + "");
             ResultSet resultado = consulta.executeQuery();
 
             if (resultado.next()) {

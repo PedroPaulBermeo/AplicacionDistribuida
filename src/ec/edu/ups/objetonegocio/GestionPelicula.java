@@ -7,6 +7,7 @@ package ec.edu.ups.objetonegocio;
 
 import ec.edu.ups.entidades.Pelicula;
 import ec.edu.ups.entidades.PeliculaVista;
+import ec.edu.ups.objetoaccesodatos.OAD;
 import java.util.List;
 
 /**
@@ -14,11 +15,13 @@ import java.util.List;
  * @author Pedro Bermeo
  */
 public class GestionPelicula {
-
-    private GestionPeliculaVista gestionPeliculaVista;
     
+    
+    private GestionPeliculaVista gestionPeliculaVista;
+    private OAD oad;
     public GestionPelicula() {
         gestionPeliculaVista=new GestionPeliculaVista();
+        oad=new OAD();
     }
      
     public boolean agregarPelicula(List<String> pelicula){
@@ -32,14 +35,31 @@ public class GestionPelicula {
     //Uso un metodo del otro ODN
     public boolean validarPelicula(int id){
         List<PeliculaVista>peliculasVistas=gestionPeliculaVista.getTodasPeliculasVista();
+        for(PeliculaVista pv:peliculasVistas){
+            if(pv.getIdPeliculaVista()==id){
+                return true;
+            }
+        }
         return false;
     }
     
-    public Pelicula buscarPelicula(int id){
+    public Pelicula buscarPelicula(String nombre){
+        if(oad.obtenerConexion()){
+            Pelicula pelicula =new Pelicula();
+            pelicula=oad.buscarPelicula(nombre);
+            oad.cerrarConexion();
+            return pelicula;
+            
+        }
         return null;
     }
     
     public boolean eliminarPelicula(int id){
+           if(oad.obtenerConexion()){
+               oad.eliminarPelicula(id);
+               oad.cerrarConexion();
+               return true;
+           }
         return false;
     }
     
