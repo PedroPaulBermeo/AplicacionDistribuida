@@ -51,7 +51,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         txtGenero = new javax.swing.JTextField();
         txtCorreoElectronico = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -87,12 +87,17 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         jLabel9.setText("Correo Electronico:");
 
         btnCrear.setText("CREAR");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("CANCELAR");
 
         btnModificar.setText("MODIFICAR");
 
-        jButton1.setText("ELIMINAR");
+        btnEliminar.setText("ELIMINAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,7 +152,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnModificar)
                         .addGap(44, 44, 44)
-                        .addComponent(jButton1))
+                        .addComponent(btnEliminar))
                     .addComponent(btnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -194,7 +199,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCrear)
                             .addComponent(btnModificar)
-                            .addComponent(jButton1))
+                            .addComponent(btnEliminar))
                         .addGap(27, 27, 27)))
                 .addComponent(btnCancelar)
                 .addGap(42, 42, 42))
@@ -211,13 +216,17 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

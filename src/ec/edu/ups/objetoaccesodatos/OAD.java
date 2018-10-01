@@ -86,7 +86,7 @@ public class OAD {
         return false;
     }
 
-    public Usuario buscarUsuario(int cedula) {
+    public Usuario buscarUsuario(String cedula) {
 
         return null;
     }

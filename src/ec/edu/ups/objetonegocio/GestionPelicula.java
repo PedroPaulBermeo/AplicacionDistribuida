@@ -42,4 +42,20 @@ public class GestionPelicula {
     public boolean eliminarPelicula(int id){
         return false;
     }
+    
+    public boolean validarDatosNulos(List<String>u){
+        for(String s:u){
+            if(s.equals(null)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public Pelicula convertirObjeto(List<String>pelicula){
+        Pelicula p = new Pelicula();
+        p.setIdPelicula(Integer.parseInt(pelicula.get(0)));
+        p.setNombre(pelicula.get(1));
+        p.setDescripcion(pelicula.get(2));
+        return p;
+    }
 }
