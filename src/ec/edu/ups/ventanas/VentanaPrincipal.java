@@ -42,6 +42,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuUsuario = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuPelicula = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -66,13 +68,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Usuario");
 
-        jMenuUsuario.setText("Crear Usuario");
+        jMenuUsuario.setText("Administrar Usuario");
         jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuUsuarioActionPerformed(evt);
             }
         });
         jMenu4.add(jMenuUsuario);
+        jMenu4.add(jSeparator1);
+
+        jMenuItem1.setText("Listar Usuarios");
+        jMenu4.add(jMenuItem1);
 
         jMenuBar2.add(jMenu4);
 
@@ -178,9 +184,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuPelicula;
     private javax.swing.JMenuItem jMenuUsuario;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
