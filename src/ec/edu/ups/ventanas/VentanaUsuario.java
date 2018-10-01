@@ -5,12 +5,15 @@
  */
 package ec.edu.ups.ventanas;
 
+import ec.edu.ups.objetonegocio.GestionUsuario;
+
 /**
  *
  * @author María José
  */
 public class VentanaUsuario extends javax.swing.JInternalFrame {
     private VentanaPrincipal ventanaPrincipal;
+    private GestionUsuario gestionUsuario;
     /**
      * Creates new form VentanaUsuario
      */
@@ -19,7 +22,22 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         initComponents();
         
         ventanaPrincipal = p;
+        gestionUsuario  = new GestionUsuario();
+        gestionUsuario.validarCedula("0106545460");     
         
+        //0103743365
+        //0106460611
+        //0103213062
+        //0107636128
+        //0151228905
+        //0150782928
+        //0106456122
+        //0101529865
+        //0104118161
+        //0106545460
+        
+        gestionUsuario.validarFechaNacimiento("30/02/1995");
+        gestionUsuario.validarCorreoElectronico("maryjopelaez@hotmail.com");
     }
 
     /**
