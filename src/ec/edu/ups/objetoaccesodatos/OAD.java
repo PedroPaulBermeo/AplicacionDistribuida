@@ -211,10 +211,6 @@ public class OAD {
 
     public List<PeliculaVista> listarPeliculaVista() {
          List<PeliculaVista> lista = new ArrayList<>();
-         /*
-         Me falta aqui ver como hago para setear los Objetos Pelicula y Usuario a las variables 
-         con error y les comente
-         */
 
         try {
             consulta = conexion.prepareStatement("Select * from \"PeliculaVista\"");
@@ -222,8 +218,20 @@ public class OAD {
             while (resultado.next()) {
                 PeliculaVista pv = new PeliculaVista();
                 pv.setIdPeliculaVista(resultado.getInt(1));
-               /* pv.setIdUsuario(resultado.getInt(2));
-                pv.setIdPelicula(resultado.getInt(3));*/
+               
+                List<Usuario>usuarios=listarUsuarios();
+                List<Pelicula>peliculas=listarPelicula();
+                for(Usuario u : usuarios){
+                    if(u.getIdUsuario()==resultado.getInt(2)){
+                        pv.setIdUsuario(u);
+                    }
+                }
+                for(Pelicula p:peliculas){
+                    if(p.getIdPelicula()==resultado.getInt(3)){
+                        pv.setIdPelicula(p);
+                    }
+                }
+                
                 pv.setFecha(resultado.getDate(4));
                 
                 lista.add(pv);
