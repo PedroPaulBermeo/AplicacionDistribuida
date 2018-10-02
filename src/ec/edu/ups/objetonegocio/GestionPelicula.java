@@ -8,6 +8,7 @@ package ec.edu.ups.objetonegocio;
 import ec.edu.ups.entidades.Pelicula;
 import ec.edu.ups.entidades.PeliculaVista;
 import ec.edu.ups.objetoaccesodatos.OAD;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,20 +37,24 @@ public class GestionPelicula {
     public boolean validarPelicula(int id){
         List<PeliculaVista>peliculasVistas=gestionPeliculaVista.getTodasPeliculasVista();
         for(PeliculaVista pv:peliculasVistas){
-            if(pv.getIdPeliculaVista()==id){
+            if(pv.getIdPelicula().getIdPelicula()==id){
                 return true;
             }
         }
         return false;
     }
     
-    public Pelicula buscarPelicula(String nombre){
+    public List<String> buscarPelicula(String nombre){
+        List<String>lista=new ArrayList<>();
+        
         if(oad.obtenerConexion()){
             Pelicula pelicula =new Pelicula();
             pelicula=oad.buscarPelicula(nombre);
             oad.cerrarConexion();
-            return pelicula;
-            
+            lista.add(""+pelicula.getIdPelicula());
+            lista.add(pelicula.getNombre());
+            lista.add(pelicula.getDescripcion());
+            return lista;        
         }
         return null;
     }
@@ -63,13 +68,24 @@ public class GestionPelicula {
         return false;
     }
     
-    public boolean validarDatosNulos(List<String>u){
-        for(String s:u){
-            if(s.equals(null)){
-                return false;
-            }
+    public List<String> getTodasPeliculas(){
+        List<Pelicula>peliculas=new ArrayList<>();
+        List<String>peliculasRetornar=new ArrayList<>();
+        
+        
+        if (oad.obtenerConexion()) {
+            peliculas = oad.listarPelicula();
+            oad.cerrarConexion();
         }
-        return true;
+        for(Pelicula p:peliculas){
+            peliculasRetornar.add(""+p.getIdPelicula());
+            peliculasRetornar.add(p.getNombre());
+            peliculasRetornar.add(p.getDescripcion());
+        }
+        
+        return peliculasRetornar;
+    
+        
     }
     public Pelicula convertirObjeto(List<String>pelicula){
         Pelicula p = new Pelicula();

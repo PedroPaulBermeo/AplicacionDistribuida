@@ -5,18 +5,28 @@
  */
 package ec.edu.ups.ventanas;
 
+import ec.edu.ups.entidades.Pelicula;
+import ec.edu.ups.fachadadenegocio.FachadaEliminarPelicula;
+import ec.edu.ups.objetonegocio.GestionPelicula;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author María José
  */
 public class VentanaPelicula extends javax.swing.JInternalFrame {
-   
+
     /**
      * Creates new form VentanaPelicula
      */
+    private GestionPelicula gestionPelicula;
+    private FachadaEliminarPelicula fachadaEliminarPelicula;
+
     public VentanaPelicula() {
         initComponents();
-   
+        gestionPelicula = new GestionPelicula();
+        fachadaEliminarPelicula = new FachadaEliminarPelicula();
     }
 
     /**
@@ -52,6 +62,11 @@ public class VentanaPelicula extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre:");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Nombre:");
 
@@ -66,6 +81,11 @@ public class VentanaPelicula extends javax.swing.JInternalFrame {
         jButton2.setText("MODIFICAR");
 
         jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("CANCELAR");
 
@@ -143,6 +163,35 @@ public class VentanaPelicula extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        buscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void buscar() {
+        List<String> pelicula = gestionPelicula.buscarPelicula(txtBuscarPelicula.getText());
+        
+        if (pelicula.get(0) != null) {
+            txtNombre.setText(pelicula.get(1));
+            txtDescripcion.setText(pelicula.get(2));
+        }else{
+            JOptionPane.showMessageDialog(this, "No existe esta pelicula");
+        }
+        
+    }
+
+    private void eliminar() {
+        if (fachadaEliminarPelicula.eliminarPelicula(txtBuscarPelicula.getText())) {
+            JOptionPane.showMessageDialog(this, "Pelicula eliminada");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede eliminar la Pelicula");
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

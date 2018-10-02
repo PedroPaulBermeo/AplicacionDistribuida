@@ -18,6 +18,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaPelicula ventanaPelicula;
     private VentanaUsuario ventanaUsuario;
     private VentanaListarUsuarios ventanaListarUsuarios;
+    private VentanaListarPeliculas ventanaListarPeliculas;
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -26,7 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaPelicula = new VentanaPelicula();
         ventanaUsuario = new VentanaUsuario();
         ventanaListarUsuarios = new VentanaListarUsuarios();
-        
+        ventanaListarPeliculas=new VentanaListarPeliculas();
     }
 
     /**
@@ -47,6 +49,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuPelicula = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -93,6 +97,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuPelicula);
+        jMenu5.add(jSeparator2);
+
+        jMenuItem2.setText("ListarPeliculas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
 
         jMenuBar2.add(jMenu5);
 
@@ -117,7 +130,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaUsuario.setVisible(true);
         ventanaPelicula.setVisible(false);
         ventanaListarUsuarios.setVisible(false);
-        
+        ventanaListarPeliculas.setVisible(false);
         jPanel1.add(ventanaUsuario);
         
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
@@ -127,6 +140,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
           ventanaUsuario.setVisible(false);
         ventanaPelicula.setVisible(true);
         ventanaListarUsuarios.setVisible(false);
+        ventanaListarPeliculas.setVisible(false);
         
         jPanel1.add(ventanaPelicula);
         
@@ -136,9 +150,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaUsuario.setVisible(false);
         ventanaPelicula.setVisible(false);
         ventanaListarUsuarios.setVisible(true);
+        ventanaListarPeliculas.setVisible(false);
         
         jPanel1.add(ventanaListarUsuarios);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+         ventanaUsuario.setVisible(false);
+        ventanaPelicula.setVisible(false);
+        ventanaListarUsuarios.setVisible(false);
+        ventanaListarPeliculas.setVisible(true);
+        
+        jPanel1.add(ventanaListarPeliculas);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,10 +204,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuPelicula;
     private javax.swing.JMenuItem jMenuUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

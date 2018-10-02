@@ -5,7 +5,7 @@
  */
 package ec.edu.ups.ventanas;
 
-import ec.edu.ups.objetonegocio.GestionUsuario;
+import ec.edu.ups.objetonegocio.GestionPelicula;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,16 +13,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pedro Bermeo
  */
-public class VentanaListarUsuarios extends javax.swing.JInternalFrame {
+public class VentanaListarPeliculas extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ventanaVistaPelicula
+     * Creates new form VentanaListarPeliculas
      */
-    private GestionUsuario gestionUsuario;
+    private GestionPelicula gestionPelicula;
     
-    public VentanaListarUsuarios() {
+    public VentanaListarPeliculas() {
         initComponents();
-        gestionUsuario=new GestionUsuario();
+        gestionPelicula = new GestionPelicula();
         mostrarDatos();
     }
 
@@ -35,13 +35,16 @@ public class VentanaListarUsuarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPeliculas = new javax.swing.JTable();
 
         setClosable(true);
 
-        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Peliculas Registradas");
+
+        tblPeliculas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,43 +55,38 @@ public class VentanaListarUsuarios extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDatos);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Usuarios Registrados");
+        jScrollPane1.setViewportView(tblPeliculas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(203, 203, 203)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(123, 123, 123))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-
-    public void mostrarDatos(){
-
+    private void mostrarDatos(){
         int contador = 0;
-        List<String>lista = gestionUsuario.getClientes();
+        List<String>lista = gestionPelicula.getTodasPeliculas();
         Object[] nombres = {"Cedula","Nombre","Apellido","Fecha Nacimiento","Genero","Email"};
         Object[][]datos = new Object[lista.size()][6];
          for(int i =0;i<lista.size();i=i+6){
@@ -110,11 +108,11 @@ public class VentanaListarUsuarios extends javax.swing.JInternalFrame {
       
         DefaultTableModel tablaModelo = new DefaultTableModel(datos, nombres);
         tblDatos.setModel(tablaModelo);
-        
-    } 
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblDatos;
+    private javax.swing.JTable tblPeliculas;
     // End of variables declaration//GEN-END:variables
 }
