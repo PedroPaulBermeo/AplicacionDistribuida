@@ -87,7 +87,7 @@ public class VentanaListarPeliculas extends javax.swing.JInternalFrame {
     private void mostrarDatos(){
         int contador = 0;
         List<String>lista = gestionPelicula.getTodasPeliculas();
-        Object[] nombres = {"Cedula","Nombre","Apellido","Fecha Nacimiento","Genero","Email"};
+        Object[] nombres = {"Cedula","Nombre","Apellido","FechaS Nacimiento","Genero","Email"};
         Object[][]datos = new Object[lista.size()][6];
          for(int i =0;i<lista.size();i=i+6){
            int j=i;     
