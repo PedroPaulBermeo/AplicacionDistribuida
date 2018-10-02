@@ -26,9 +26,9 @@ import javax.swing.JOptionPane;
 public class GestionUsuario {
 
     private OAD oad;
-    
+
     public GestionUsuario() {
-        oad= new OAD();
+        oad = new OAD();
     }
 
     public boolean validarCedula(String cedula) {
@@ -115,53 +115,74 @@ public class GestionUsuario {
 
     public boolean validarFechaNacimiento(String fecha) {
 
-        int dia=Integer.parseInt(fecha.substring(0,2));
-        int mes=Integer.parseInt(fecha.substring(3,5));
-        int anio=Integer.parseInt(fecha.substring(6,fecha.length()));
-       
+        int dia = Integer.parseInt(fecha.substring(0, 2));
+        int mes = Integer.parseInt(fecha.substring(3, 5));
+        int anio = Integer.parseInt(fecha.substring(6, fecha.length()));
+
         System.out.println(dia);
         System.out.println(mes);
         System.out.println(anio);
-        if(anio<1900){
-            try{
-                
-            }catch(IllegalArgumentException i){
+
+        if (anio < 1900) {
+            try {
+
+            } catch (IllegalArgumentException i) {
                 i.printStackTrace();
-                System.out.println("Año invalido: "+i.getMessage());
+                System.out.println("Año invalido: " + i.getMessage());
             }
             return false;
         }
-        try{
-            LocalDate hoy = LocalDate.of(anio,mes,dia);
-             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-             System.out.println(formatter.format(hoy));
-        }catch(DateTimeException e){
-            System.out.println("La fecha ingresada es invalido: "+e.getMessage());
+        try {
+
+            LocalDate hoy = LocalDate.of(anio, mes, dia);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            System.out.println(formatter.format(hoy));
+            return true;
+
+        } catch (DateTimeException e) {
+            System.out.println("La fecha ingresada es invalido: " + e.getMessage());
+            return false;
         }
-             
-            
-        return true;
     }
 
     public boolean validarCorreoElectronico(String correo) {
 
-        if(correo.contains("@")){
+        if (correo.contains("@")) {
             System.out.println("es valido el correo");
             return true;
-            
+
         }
         return false;
     }
 
-
     public boolean registrarUsuario(List<String> u) {
+
+        if (validarDatosNulos(u)) {
+            if (validarCedula(u.get(1)) && validarFechaNacimiento(u.get(4)) && validarCorreoElectronico(u.get(6))) {
+                
+                Usuario usuario = convertirUsuario(u);
+                Usuario usu = buscarUsuario(usuario.getCedula());
+
+                if (usu != null) {
+                    System.out.println("Usuario ya existe");
+                    return false;
+                } else {
+                    if (oad.obtenerConexion()) {
+                        oad.insertarUsuario(usuario);
+                        oad.cerrarConexion();
+                        return true;
+
+                    }
+                }
+            }
+        }
 
         return false;
     }
 
     public boolean actualizarUsuario(List<String> u) {
         Usuario usuario = convertirUsuario(u);
-        if(oad.obtenerConexion()){
+        if (oad.obtenerConexion()) {
             oad.modificarUsuario(usuario);
             oad.cerrarConexion();
             return true;
@@ -170,8 +191,8 @@ public class GestionUsuario {
     }
 
     public boolean eliminarUsuario(int id) {
-        
-        if(oad.obtenerConexion()){
+
+        if (oad.obtenerConexion()) {
             oad.eliminarUsuario(id);
             oad.cerrarConexion();
             return true;
@@ -180,27 +201,27 @@ public class GestionUsuario {
     }
 
     public Usuario buscarUsuario(String cedula) {
-        Usuario usuario=null;
-        if(oad.obtenerConexion()){
-            usuario=new Usuario();
-            usuario=oad.buscarUsuario(cedula);
+        Usuario usuario = null;
+        if (oad.obtenerConexion()) {
+            usuario = new Usuario();
+            usuario = oad.buscarUsuario(cedula);
             oad.cerrarConexion();
             return usuario;
         }
         return null;
-        
+
     }
 
     public List<Usuario> getClientes() {
-        List<Usuario>usuarios=new ArrayList<>();
-        
-         if(oad.obtenerConexion()){
-            
-            usuarios=oad.listarUsuarios();
+        List<Usuario> usuarios = new ArrayList<>();
+
+        if (oad.obtenerConexion()) {
+
+            usuarios = oad.listarUsuarios();
             oad.cerrarConexion();
             return usuarios;
         }
-         
+
         return null;
     }
 
@@ -230,23 +251,5 @@ public class GestionUsuario {
         usuario.setEmail(u.get(6));
         return usuario;
     }
-    
-    public boolean buscarUsuarioExiste(List<String> u){
-        
-        if(oad.obtenerConexion()){
-            List<Usuario>usuarios=new ArrayList<>();
-            usuarios=oad.listarUsuarios();
-            for(Usuario u1 : usuarios){
-                if(u1.getEmail().equals(u.get(6))){
-                    oad.cerrarConexion();
-                    return true;
-                }
-            }
-            
-            oad.cerrarConexion();
-        }
-        
-        return false;
-        
-    }
+
 }

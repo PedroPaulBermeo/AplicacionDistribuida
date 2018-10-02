@@ -6,40 +6,39 @@
 package ec.edu.ups.ventanas;
 
 import ec.edu.ups.objetonegocio.GestionUsuario;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author María José
  */
 public class VentanaUsuario extends javax.swing.JInternalFrame {
+
     private VentanaPrincipal ventanaPrincipal;
     private GestionUsuario gestionUsuario;
+
     /**
      * Creates new form VentanaUsuario
      */
     public VentanaUsuario(VentanaPrincipal p) {
-        
-        initComponents();
-        
-        ventanaPrincipal = p;
-        gestionUsuario  = new GestionUsuario();
-        gestionUsuario.validarCedula("0106545460");     
-        
-        //0103743365
-        //0106460611
-        //0103213062
-        //0107636128
-        //0151228905
-        //0150782928
-        //0106456122
-        //0101529865
-        //0104118161
-        //0106545460
-        
-        gestionUsuario.validarFechaNacimiento("30/02/1995");
-        gestionUsuario.validarCorreoElectronico("maryjopelaez@hotmail.com");
-    }
 
+        initComponents();
+
+        ventanaPrincipal = p;
+        gestionUsuario = new GestionUsuario();  
+    }
+private List<String> obtenerLista() {
+        List<String> lista = new ArrayList<>();
+        lista.add(txtCedula.getText());
+        lista.add(txtNombre.getText());
+        lista.add(txtApellido.getText());
+        lista.add(txtFechaNacimiento.getText());
+        lista.add(txtGenero.getText());
+        lista.add(txtCorreoElectronico.getText());
+        return lista;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,11 +230,30 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarCedulaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+
+        /*List<String> datosUsuario = new ArrayList<>();
+        datosUsuario.add(txtCedula.getText());
+        datosUsuario.add(txtNombre.getText());
+        datosUsuario.add(txtApellido.getText());
+        datosUsuario.add(txtFechaNacimiento.getText());
+        datosUsuario.add(txtGenero.getText());
+        datosUsuario.add(txtCorreoElectronico.getText());*/
+
+        gestionUsuario.buscarUsuario(txtCedula.getText());
+        /*if (gestionUsuario.validarCedula(txtBuscarCedula.getText())) {
+            System.out.println("Cedula correcta");
+            gestionUsuario.registrarUsuario(datosUsuario);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "La cedula es incorrecta");
+        }*/
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
+        
+        List<String> datosUsuario = obtenerLista();
+
+       gestionUsuario.registrarUsuario(datosUsuario);
     }//GEN-LAST:event_btnCrearActionPerformed
 
 

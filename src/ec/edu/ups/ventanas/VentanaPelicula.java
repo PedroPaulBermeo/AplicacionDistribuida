@@ -5,19 +5,36 @@
  */
 package ec.edu.ups.ventanas;
 
+import ec.edu.ups.objetonegocio.GestionPelicula;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author María José
  */
 public class VentanaPelicula extends javax.swing.JInternalFrame {
     private VentanaPrincipal ventanaPrincipal;
+    private GestionPelicula gestionPelicula;
+    
     /**
      * Creates new form VentanaPelicula
      */
     public VentanaPelicula(VentanaPrincipal p) {
         initComponents();
         ventanaPrincipal = p;
+        gestionPelicula=new GestionPelicula();
     }
+    
+    private List<String> obtenerLista(){
+    
+    List<String> lista = new ArrayList<>();
+    lista.add(txtNombre.getText());
+    lista.add(txtDescripcion.getText());
+    
+    return lista;
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,8 +79,18 @@ public class VentanaPelicula extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(txtDescripcion);
 
         jButton1.setText("CREAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("ELIMINAR");
 
@@ -143,6 +170,15 @@ public class VentanaPelicula extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<String> lista = obtenerLista();
+        gestionPelicula.agregarPelicula(lista);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<String> lista = obtenerLista();
+        gestionPelicula.modificarPelicula(lista);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
