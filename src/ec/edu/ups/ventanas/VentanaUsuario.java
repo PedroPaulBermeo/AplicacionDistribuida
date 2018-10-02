@@ -319,6 +319,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         lista.add(txtFechaNacimiento.getText());
         lista.add(txtGenero.getText());
         lista.add(txtCorreoElectronico.getText());
+        
         return lista;
     }
 
